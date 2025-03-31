@@ -1,0 +1,461 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>学习日常 | 学习日常</title><meta name="author" content="hi"><meta name="copyright" content="hi"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="在 PHP 中，正则表达式可以用来进行字符串的匹配、查找、替换和分割等操作。 正则表达式基本概念1. 字符类字符类用于匹配一组字符中的任意一个字符。常见的字符类表示方式如下：  [ ]：匹配方括号内指定的任意一个字符。例如，[abc] 可以匹配字符 a、b 或 c。 [^ ]：匹配不在方括号内指定的任意一个字符。例如，[^abc] 可以匹配除 a、b、c 之外的任意字符。 [a-z]：匹配指定范围">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习日常">
+<meta property="og:url" content="http://zzy20060723.github.io/2025/03/31/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/index.html">
+<meta property="og:site_name" content="学习日常">
+<meta property="og:description" content="在 PHP 中，正则表达式可以用来进行字符串的匹配、查找、替换和分割等操作。 正则表达式基本概念1. 字符类字符类用于匹配一组字符中的任意一个字符。常见的字符类表示方式如下：  [ ]：匹配方括号内指定的任意一个字符。例如，[abc] 可以匹配字符 a、b 或 c。 [^ ]：匹配不在方括号内指定的任意一个字符。例如，[^abc] 可以匹配除 a、b、c 之外的任意字符。 [a-z]：匹配指定范围">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://zzy20060723.github.io/img/butterfly-icon.png">
+<meta property="article:published_time" content="2025-03-31T05:19:52.126Z">
+<meta property="article:modified_time" content="2025-03-31T05:48:28.922Z">
+<meta property="article:author" content="hi">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://zzy20060723.github.io/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "url": "http://zzy20060723.github.io/2025/03/31/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/",
+  "image": "http://zzy20060723.github.io/img/butterfly-icon.png",
+  "datePublished": "2025-03-31T05:19:52.126Z",
+  "dateModified": "2025-03-31T05:48:28.922Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "hi",
+      "url": "http://zzy20060723.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="http://zzy20060723.github.io/2025/03/31/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '学习日常',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">9</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">学习日常</span></a><a class="nav-page-title" href="/"><span class="site-name">学习日常</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Untitled</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-03-31T05:19:52.126Z" title="Created 2025-03-31 13:19:52">2025-03-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-03-31T05:48:28.922Z" title="Updated 2025-03-31 13:48:28">2025-03-31</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>在 PHP 中，正则表达式可以用来进行字符串的匹配、查找、替换和分割等操作。</p>
+<h1 id="正则表达式基本概念"><a href="#正则表达式基本概念" class="headerlink" title="正则表达式基本概念"></a>正则表达式基本概念</h1><h4 id="1-字符类"><a href="#1-字符类" class="headerlink" title="1. 字符类"></a>1. 字符类</h4><p>字符类用于匹配一组字符中的任意一个字符。常见的字符类表示方式如下：</p>
+<ul>
+<li><code>[ ]</code>：匹配方括号内指定的任意一个字符。例如，<code>[abc]</code> 可以匹配字符 <code>a</code>、<code>b</code> 或 <code>c</code>。</li>
+<li><code>[^ ]</code>：匹配不在方括号内指定的任意一个字符。例如，<code>[^abc]</code> 可以匹配除 <code>a</code>、<code>b</code>、<code>c</code> 之外的任意字符。</li>
+<li><code>[a-z]</code>：匹配指定范围内的任意一个字符。例如，<code>[a-z]</code> 可以匹配任意小写字母。</li>
+<li><code>[0-9]</code>：匹配任意一个数字字符，等价于 <code>\d</code>。</li>
+</ul>
+<h4 id="2-元字符"><a href="#2-元字符" class="headerlink" title="2. 元字符"></a>2. 元字符</h4><p>元字符是具有特殊含义的字符，用于表示一些常见的字符类或匹配规则。常见的元字符如下：</p>
+<ul>
+<li><p><code>.</code>：匹配除换行符之外的任意一个字符。</p>
+</li>
+<li><p><code>\d</code>：匹配任意一个数字字符，等价于 <code>[0-9]</code>。</p>
+</li>
+<li><p><code>\D</code>：匹配任意一个非数字字符，等价于 <code>[^0-9]</code>。</p>
+</li>
+<li><p><code>\w</code>：匹配任意一个单词字符（字母、数字或下划线），等价于 <code>[a-zA-Z0-9_]</code>。</p>
+</li>
+<li><p><code>\W</code>：匹配任意一个非单词字符，等价于 <code>[^a-zA-Z0-9_]</code>。</p>
+</li>
+<li><p><code>\s</code>：匹配任意一个空白字符（空格、制表符、换行符等）。</p>
+</li>
+<li><p><code>\S</code>：匹配任意一个非空白字符。</p>
+</li>
+<li></li>
+<li><table>
+<thead>
+<tr>
+<th align="left">元字符</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">\</td>
+<td align="center">一般用于转义字符</td>
+</tr>
+<tr>
+<td align="left">^</td>
+<td align="center">断言目标的开始位置(或在多行模式下是行首)</td>
+</tr>
+<tr>
+<td align="left">$</td>
+<td align="center">断言目标的结束位置(或在多行模式下是行尾)</td>
+</tr>
+<tr>
+<td align="left">.</td>
+<td align="center">匹配除换行符外的任何字符(默认)</td>
+</tr>
+<tr>
+<td align="left">[</td>
+<td align="center">开始字符类定义</td>
+</tr>
+<tr>
+<td align="left">]</td>
+<td align="center">结束字符类定义</td>
+</tr>
+<tr>
+<td align="left">|</td>
+<td align="center">开始一个可选分支</td>
+</tr>
+<tr>
+<td align="left">(</td>
+<td align="center">子组的开始标记</td>
+</tr>
+<tr>
+<td align="left">)</td>
+<td align="center">子组的结束标记</td>
+</tr>
+<tr>
+<td align="left">?</td>
+<td align="center">作为量词，表示 0 次或 1 次匹配。位于量词后面用于改变量词的贪婪特性。 (查阅<a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/regexp.reference.repetition.php">量词</a>)</td>
+</tr>
+<tr>
+<td align="left">*</td>
+<td align="center">量词，0 次或多次匹配</td>
+</tr>
+<tr>
+<td align="left">+</td>
+<td align="center">量词，1 次或多次匹配</td>
+</tr>
+<tr>
+<td align="left">{</td>
+<td align="center">自定义量词开始标记</td>
+</tr>
+<tr>
+<td align="left">}</td>
+<td align="center">自定义量词结束标记</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h4 id="3-量词"><a href="#3-量词" class="headerlink" title="3. 量词"></a>3. 量词</h4><p>量词用于指定前面的字符或字符类出现的次数。常见的量词如下：</p>
+<ul>
+<li><code>*</code>：匹配前面的字符或字符类零次或多次。例如，<code>a*</code> 可以匹配空字符串、<code>a</code>、<code>aa</code>、<code>aaa</code> 等。</li>
+<li><code>+</code>：匹配前面的字符或字符类一次或多次。例如，<code>a+</code> 可以匹配 <code>a</code>、<code>aa</code>、<code>aaa</code> 等，但不能匹配空字符串。</li>
+<li><code>?</code>：匹配前面的字符或字符类零次或一次。例如，<code>a?</code> 可以匹配空字符串或 <code>a</code>。</li>
+<li><code>&#123;n&#125;</code>：匹配前面的字符或字符类恰好 <code>n</code> 次。例如，<code>a&#123;3&#125;</code> 可以匹配 <code>aaa</code>。</li>
+<li><code>&#123;n,&#125;</code>：匹配前面的字符或字符类至少 <code>n</code> 次。例如，<code>a&#123;3,&#125;</code> 可以匹配 <code>aaa</code>、<code>aaaa</code>、<code>aaaaa</code> 等。</li>
+<li><code>&#123;n,m&#125;</code>：匹配前面的字符或字符类至少 <code>n</code> 次，但不超过 <code>m</code> 次。例如，<code>a&#123;3,5&#125;</code> 可以匹配 <code>aaa</code>、<code>aaaa</code>、<code>aaaaa</code>。</li>
+</ul>
+<h4 id="4-边界匹配"><a href="#4-边界匹配" class="headerlink" title="4. 边界匹配"></a>4. 边界匹配</h4><p>边界匹配用于指定匹配的位置，而不是具体的字符。常见的边界匹配符如下：</p>
+<ul>
+<li><code>^</code>：匹配字符串的开头。例如，<code>^abc</code> 可以匹配以 <code>abc</code> 开头的字符串。</li>
+<li><code>$</code>：匹配字符串的结尾。例如，<code>abc$</code> 可以匹配以 <code>abc</code> 结尾的字符串。</li>
+<li><code>\b</code>：匹配单词边界。例如，<code>\bcat\b</code> 可以匹配独立的单词 <code>cat</code>，但不会匹配 <code>category</code> 中的 <code>cat</code>。</li>
+</ul>
+<h4 id="5-分隔符"><a href="#5-分隔符" class="headerlink" title="5.分隔符"></a>5.分隔符</h4><p>当使用 PCRE 函数的时候，模式需要由<em>分隔符</em>闭合包裹。 分隔符可以是任意非字母数字、非反斜线、非空白字符。 静默忽略合法分隔符之前的空白字符。</p>
+<p>经常使用的分隔符是正斜线(<code>/</code>)、hash符号(<code>#</code>) 以及取反符号(<code>~</code>)。</p>
+<h1 id="正则表达式用法示例"><a href="#正则表达式用法示例" class="headerlink" title="正则表达式用法示例"></a>正则表达式用法示例</h1><h4 id="1-匹配手机号码"><a href="#1-匹配手机号码" class="headerlink" title="1. 匹配手机号码"></a>1. 匹配手机号码</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$pattern</span> = <span class="string">&#x27;/^1[3-9]\d&#123;9&#125;$/&#x27;</span>;</span><br><span class="line"><span class="variable">$phone</span> = <span class="string">&#x27;13800138000&#x27;</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="title function_ invoke__">preg_match</span>(<span class="variable">$pattern</span>, <span class="variable">$phone</span>)) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;手机号码格式正确&#x27;</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;手机号码格式错误&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h4><ul>
+<li><code>^</code> 表示字符串的开头。</li>
+<li><code>1</code> 表示手机号码以 <code>1</code> 开头。</li>
+<li><code>[3-9]</code> 表示第二位数字是 3 到 9 之间的任意一个数字。</li>
+<li><code>\d&#123;9&#125;</code> 表示后面跟着 9 个数字。</li>
+<li><code>$</code> 表示字符串的结尾。</li>
+</ul>
+<h4 id="2-匹配邮箱地址"><a href="#2-匹配邮箱地址" class="headerlink" title="2. 匹配邮箱地址"></a>2. 匹配邮箱地址</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$pattern</span> = <span class="string">&#x27;/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]&#123;2,&#125;$/&#x27;</span>;</span><br><span class="line"><span class="variable">$email</span> = <span class="string">&#x27;example@example.com&#x27;</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="title function_ invoke__">preg_match</span>(<span class="variable">$pattern</span>, <span class="variable">$email</span>)) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;邮箱地址格式正确&#x27;</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;邮箱地址格式错误&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="解释-1"><a href="#解释-1" class="headerlink" title="解释"></a>解释</h4><ul>
+<li><code>^</code> 表示字符串的开头。</li>
+<li><code>[a-zA-Z0-9._%+-]+</code> 表示用户名部分，可以包含字母、数字、点、下划线、百分号、加号和减号，且至少出现一次。</li>
+<li><code>@</code> 表示邮箱地址中的 <code>@</code> 符号。</li>
+<li><code>[a-zA-Z0-9.-]+</code> 表示域名部分，可以包含字母、数字、点和减号，且至少出现一次。</li>
+<li><code>\.</code> 表示域名中的点号，需要使用反斜杠进行转义。</li>
+<li><code>[a-zA-Z]&#123;2,&#125;</code> 表示顶级域名，至少包含两个字母。</li>
+<li><code>$</code> 表示字符串的结尾。</li>
+</ul>
+<h3 id="PHP-中的正则函数"><a href="#PHP-中的正则函数" class="headerlink" title="PHP 中的正则函数"></a>PHP 中的正则函数</h3><h3 id="1-preg-match"><a href="#1-preg-match" class="headerlink" title="1. preg_match"></a>1. <code>preg_match</code></h3><p>该函数用于在字符串中搜索与正则表达式匹配的首个结果。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">preg_match</span> ( <span class="keyword">string</span> <span class="variable">$pattern</span> , <span class="keyword">string</span> <span class="variable">$subject</span> [, <span class="keyword">array</span> &amp;<span class="variable">$matches</span> [, <span class="keyword">int</span> <span class="variable">$flags</span> = <span class="number">0</span> [, <span class="keyword">int</span> <span class="variable">$offset</span> = <span class="number">0</span> ]]] ) : <span class="keyword">int</span>|<span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>参数说明</p>
+<p>：</p>
+<ul>
+<li><p><code>$pattern</code>：正则表达式模式。</p>
+</li>
+<li><p><code>$subject</code>：要搜索的字符串。</p>
+</li>
+<li><p><code>$matches</code>：可选参数，用于存储匹配结果的数组。</p>
+</li>
+<li><p><code>$flags</code>：可选参数，控制匹配行为，例如 <code>PREG_OFFSET_CAPTURE</code> 会同时返回匹配结果的偏移量。</p>
+</li>
+<li><p><code>$offset</code>：可选参数，指定从字符串的哪个位置开始搜索。</p>
+</li>
+<li><h3 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h3><p>如果 <code>pattern</code> 匹配到指定 <code>subject</code>，则 <strong>preg_match()</strong> 返回 1，如果没有匹配到则返回 0， 或者在失败时返回 <strong><code>false</code></strong>。</p>
+<p><strong>警告</strong></p>
+<p>此函数可能返回布尔值 <strong><code>false</code></strong>，但也可能返回等同于 <strong><code>false</code></strong> 的非布尔值。请阅读 <a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/language.types.boolean.php">布尔类型</a>章节以获取更多信息。应使用 <a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/language.operators.comparison.php">&#x3D;&#x3D;&#x3D; 运算符</a>来测试此函数的返回值。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>示例代码</strong>：</p>
+</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$pattern</span> = <span class="string">&#x27;/apple/&#x27;</span>;</span><br><span class="line"><span class="variable">$subject</span> = <span class="string">&#x27;I like apple and banana&#x27;</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="title function_ invoke__">preg_match</span>(<span class="variable">$pattern</span>, <span class="variable">$subject</span>, <span class="variable">$matches</span>)) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;匹配成功，匹配结果: &quot;</span>. <span class="variable">$matches</span>[<span class="number">0</span>];</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;匹配失败&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-preg-match-all"><a href="#2-preg-match-all" class="headerlink" title="2. preg_match_all"></a>2. <code>preg_match_all</code></h3><p>在字符串中搜索所有与正则表达式匹配的结果。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">preg_match_all</span> ( <span class="keyword">string</span> <span class="variable">$pattern</span> , <span class="keyword">string</span> <span class="variable">$subject</span> [, <span class="keyword">array</span> &amp;<span class="variable">$matches</span> [, <span class="keyword">int</span> <span class="variable">$flags</span> = PREG_PATTERN_ORDER [, <span class="keyword">int</span> <span class="variable">$offset</span> = <span class="number">0</span> ]]] ) : <span class="keyword">int</span>|<span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>参数说明</p>
+<p>：</p>
+<ul>
+<li><p><code>$pattern</code>：正则表达式模式。</p>
+</li>
+<li><p><code>$subject</code>：要搜索的字符串。</p>
+</li>
+<li><p><code>$matches</code>：可选参数，用于存储所有匹配结果的数组。</p>
+</li>
+<li><p><code>$flags</code>：可选参数，控制匹配结果的排序方式，例如 <code>PREG_PATTERN_ORDER</code>、<code>PREG_SET_ORDER</code> 等。</p>
+</li>
+<li><p><code>$offset</code>：可选参数，指定从字符串的哪个位置开始搜索。</p>
+</li>
+<li><h3 id="返回值-1"><a href="#返回值-1" class="headerlink" title="返回值"></a>返回值</h3><p>返回完整匹配次数（可能是 0）， 或者在失败时返回 <strong><code>false</code></strong>。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>示例代码</strong>：</p>
+</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$pattern</span> = <span class="string">&#x27;/\d+/&#x27;</span>;</span><br><span class="line"><span class="variable">$subject</span> = <span class="string">&#x27;There are 10 apples and 20 bananas&#x27;</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="title function_ invoke__">preg_match_all</span>(<span class="variable">$pattern</span>, <span class="variable">$subject</span>, <span class="variable">$matches</span>)) &#123;</span><br><span class="line">    <span class="title function_ invoke__">print_r</span>(<span class="variable">$matches</span>[<span class="number">0</span>]);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;匹配失败&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-preg-replace"><a href="#3-preg-replace" class="headerlink" title="3. preg_replace"></a>3. <code>preg_replace</code></h3><p>在字符串中查找与正则表达式匹配的部分，然后用指定字符串替换。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">preg_replace</span> ( <span class="keyword">array</span>|<span class="keyword">string</span> <span class="variable">$pattern</span> , <span class="keyword">array</span>|<span class="keyword">string</span> <span class="variable">$replacement</span> , <span class="keyword">array</span>|<span class="keyword">string</span> <span class="variable">$subject</span> [, <span class="keyword">int</span> <span class="variable">$limit</span> = -<span class="number">1</span> [, <span class="keyword">int</span> &amp;<span class="variable">$count</span> ]] ) : <span class="keyword">array</span>|<span class="keyword">string</span>|<span class="literal">null</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>参数说明</p>
+<p>：</p>
+<ul>
+<li><code>$pattern</code>：正则表达式模式，可以是字符串或数组。</li>
+<li><code>$replacement</code>：要替换的字符串或数组。</li>
+<li><code>$subject</code>：要进行替换操作的字符串或数组。</li>
+<li><code>$limit</code>：可选参数，指定每个模式最多替换的次数，默认值为 -1 表示无限制。</li>
+<li><code>$count</code>：可选参数，用于存储实际发生替换的次数。</li>
+</ul>
+</li>
+<li><p><strong>示例代码</strong>：</p>
+</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$pattern</span> = <span class="string">&#x27;/apple/&#x27;</span>;</span><br><span class="line"><span class="variable">$replacement</span> = <span class="string">&#x27;orange&#x27;</span>;</span><br><span class="line"><span class="variable">$subject</span> = <span class="string">&#x27;I like apple and banana&#x27;</span>;</span><br><span class="line"><span class="variable">$new_subject</span> = <span class="title function_ invoke__">preg_replace</span>(<span class="variable">$pattern</span>, <span class="variable">$replacement</span>, <span class="variable">$subject</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$new_subject</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-preg-replace-callback"><a href="#4-preg-replace-callback" class="headerlink" title="4. preg_replace_callback"></a>4. <code>preg_replace_callback</code></h3><p>与 <code>preg_replace</code> 类似，但使用回调函数来确定替换内容。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">preg_replace_callback</span> ( <span class="keyword">array</span>|<span class="keyword">string</span> <span class="variable">$pattern</span> , <span class="keyword">callable</span> <span class="variable">$callback</span> , <span class="keyword">array</span>|<span class="keyword">string</span> <span class="variable">$subject</span> [, <span class="keyword">int</span> <span class="variable">$limit</span> = -<span class="number">1</span> [, <span class="keyword">int</span> &amp;<span class="variable">$count</span> ]] ) : <span class="keyword">array</span>|<span class="keyword">string</span>|<span class="literal">null</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>参数说明</p>
+<p>：</p>
+<ul>
+<li><code>$pattern</code>：正则表达式模式，可以是字符串或数组。</li>
+<li><code>$callback</code>：回调函数，用于处理每个匹配结果并返回替换内容。</li>
+<li><code>$subject</code>：要进行替换操作的字符串或数组。</li>
+<li><code>$limit</code>：可选参数，指定每个模式最多替换的次数，默认值为 -1 表示无限制。</li>
+<li><code>$count</code>：可选参数，用于存储实际发生替换的次数。</li>
+</ul>
+</li>
+<li><p><strong>示例代码</strong>：</p>
+</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$pattern</span> = <span class="string">&#x27;/\d+/&#x27;</span>;</span><br><span class="line"><span class="variable">$subject</span> = <span class="string">&#x27;There are 10 apples and 20 bananas&#x27;</span>;</span><br><span class="line"><span class="variable">$new_subject</span> = <span class="title function_ invoke__">preg_replace_callback</span>(<span class="variable">$pattern</span>, function (<span class="variable">$matches</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$matches</span>[<span class="number">0</span>] * <span class="number">2</span>;</span><br><span class="line">&#125;, <span class="variable">$subject</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$new_subject</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-preg-replace-callback-array"><a href="#5-preg-replace-callback-array" class="headerlink" title="5. preg_replace_callback_array"></a>5. <code>preg_replace_callback_array</code></h3><p>和 <code>preg_replace_callback</code> 功能类似，不过可以使用数组来指定多个模式和对应的回调函数。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">preg_replace_callback_array</span> ( <span class="keyword">array</span> <span class="variable">$pattern_callback</span> , <span class="keyword">array</span>|<span class="keyword">string</span> <span class="variable">$subject</span> [, <span class="keyword">int</span> <span class="variable">$limit</span> = -<span class="number">1</span> [, <span class="keyword">int</span> &amp;<span class="variable">$count</span> ]] ) : <span class="keyword">array</span>|<span class="keyword">string</span>|<span class="literal">null</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>参数说明</p>
+<p>：</p>
+<ul>
+<li><code>$pattern_callback</code>：一个关联数组，键为正则表达式模式，值为对应的回调函数。</li>
+<li><code>$subject</code>：要进行替换操作的字符串或数组。</li>
+<li><code>$limit</code>：可选参数，指定每个模式最多替换的次数，默认值为 -1 表示无限制。</li>
+<li><code>$count</code>：可选参数，用于存储实际发生替换的次数。</li>
+</ul>
+</li>
+<li><p><strong>示例代码</strong>：</p>
+</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$pattern_callback</span> = [</span><br><span class="line">    <span class="string">&#x27;/\d+/&#x27;</span> =&gt; <span class="function"><span class="keyword">function</span> (<span class="params"><span class="variable">$matches</span></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$matches</span>[<span class="number">0</span>] * <span class="number">2</span>;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&#x27;/apple/&#x27;</span> =&gt; <span class="function"><span class="keyword">function</span> (<span class="params"><span class="variable">$matches</span></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;orange&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">];</span><br><span class="line"><span class="variable">$subject</span> = <span class="string">&#x27;There are 10 apples and 20 bananas&#x27;</span>;</span><br><span class="line"><span class="variable">$new_subject</span> = <span class="title function_ invoke__">preg_replace_callback_array</span>(<span class="variable">$pattern_callback</span>, <span class="variable">$subject</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$new_subject</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-preg-split"><a href="#6-preg-split" class="headerlink" title="6. preg_split"></a>6. <code>preg_split</code></h3><p>依据正则表达式模式将字符串分割成数组。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">preg_split</span> ( <span class="keyword">string</span> <span class="variable">$pattern</span> , <span class="keyword">string</span> <span class="variable">$subject</span> [, <span class="keyword">int</span> <span class="variable">$limit</span> = -<span class="number">1</span> [, <span class="keyword">int</span> <span class="variable">$flags</span> = <span class="number">0</span> ]] ) : <span class="keyword">array</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>参数说明</p>
+<p>：</p>
+<ul>
+<li><code>$pattern</code>：正则表达式模式。</li>
+<li><code>$subject</code>：要进行分割的字符串。</li>
+<li><code>$limit</code>：可选参数，指定最多分割成的数组元素数量，默认值为 -1 表示无限制。</li>
+<li><code>$flags</code>：可选参数，控制分割行为，例如 <code>PREG_SPLIT_NO_EMPTY</code> 表示忽略空元素。</li>
+</ul>
+</li>
+<li><p><strong>示例代码</strong>：</p>
+</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$pattern</span> = <span class="string">&#x27;/\s+/&#x27;</span>;</span><br><span class="line"><span class="variable">$subject</span> = <span class="string">&#x27;I like  apple and banana&#x27;</span>;</span><br><span class="line"><span class="variable">$array</span> = <span class="title function_ invoke__">preg_split</span>(<span class="variable">$pattern</span>, <span class="variable">$subject</span>);</span><br><span class="line"><span class="title function_ invoke__">print_r</span>(<span class="variable">$array</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-preg-grep"><a href="#7-preg-grep" class="headerlink" title="7. preg_grep"></a>7. <code>preg_grep</code></h3><p>返回数组中与正则表达式匹配的元素所组成的数组。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">preg_grep</span> ( <span class="keyword">string</span> <span class="variable">$pattern</span> , <span class="keyword">array</span> <span class="variable">$input</span> [, <span class="keyword">int</span> <span class="variable">$flags</span> = <span class="number">0</span> ] ) : <span class="keyword">array</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>参数说明</p>
+<p>：</p>
+<ul>
+<li><code>$pattern</code>：正则表达式模式。</li>
+<li><code>$input</code>：要搜索的数组。</li>
+<li><code>$flags</code>：可选参数，控制匹配行为，例如 <code>PREG_GREP_INVERT</code> 表示返回不匹配的元素。</li>
+</ul>
+</li>
+<li><p><strong>示例代码</strong>：</p>
+</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$pattern</span> = <span class="string">&#x27;/apple/&#x27;</span>;</span><br><span class="line"><span class="variable">$input</span> = [<span class="string">&#x27;apple&#x27;</span>, <span class="string">&#x27;banana&#x27;</span>, <span class="string">&#x27;apple juice&#x27;</span>];</span><br><span class="line"><span class="variable">$matches</span> = <span class="title function_ invoke__">preg_grep</span>(<span class="variable">$pattern</span>, <span class="variable">$input</span>);</span><br><span class="line"><span class="title function_ invoke__">print_r</span>(<span class="variable">$matches</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-preg-last-error"><a href="#8-preg-last-error" class="headerlink" title="8. preg_last_error"></a>8. <code>preg_last_error</code></h3><p>返回最后一次正则表达式执行时发生的错误代码。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">preg_last_error</span> ( ) : <span class="keyword">int</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>示例代码</strong>：</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$pattern</span> = <span class="string">&#x27;/[a-z/&#x27;</span>; <span class="comment">// 错误的正则表达式</span></span><br><span class="line"><span class="variable">$subject</span> = <span class="string">&#x27;test&#x27;</span>;</span><br><span class="line"><span class="keyword">if</span> (!<span class="title function_ invoke__">preg_match</span>(<span class="variable">$pattern</span>, <span class="variable">$subject</span>)) &#123;</span><br><span class="line">    <span class="variable">$error_code</span> = <span class="title function_ invoke__">preg_last_error</span>();</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;正则表达式执行出错，错误代码: &quot;</span>. <span class="variable">$error_code</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="9-preg-last-error-msg"><a href="#9-preg-last-error-msg" class="headerlink" title="9. preg_last_error_msg"></a>9. <code>preg_last_error_msg</code></h3><p>返回最后一次正则表达式执行时发生的错误消息。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">preg_last_error_msg</span> ( ) : <span class="keyword">string</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>示例代码</strong>：</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$pattern</span> = <span class="string">&#x27;/[a-z/&#x27;</span>; <span class="comment">// 错误的正则表达式</span></span><br><span class="line"><span class="variable">$subject</span> = <span class="string">&#x27;test&#x27;</span>;</span><br><span class="line"><span class="keyword">if</span> (!<span class="title function_ invoke__">preg_match</span>(<span class="variable">$pattern</span>, <span class="variable">$subject</span>)) &#123;</span><br><span class="line">    <span class="variable">$error_msg</span> = <span class="title function_ invoke__">preg_last_error_msg</span>();</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;正则表达式执行出错，错误消息: &quot;</span>. <span class="variable">$error_msg</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="10-preg-quote"><a href="#10-preg-quote" class="headerlink" title="10. preg_quote"></a>10. <code>preg_quote</code></h3><p>对字符串中的正则表达式元字符进行转义。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">preg_quote</span> ( <span class="keyword">string</span> <span class="variable">$str</span> [, <span class="keyword">string</span> <span class="variable">$delimiter</span> = <span class="literal">null</span> ] ) : <span class="keyword">string</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>参数说明<ul>
+<li><code>$str</code>：要进行转义的字符串。</li>
+<li><code>$delimiter</code>：可选参数，指定正则表达式的分隔符，会对该分隔符也进行转义。</li>
+</ul>
+</li>
+<li><strong>示例代码</strong>：</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$str</span> = <span class="string">&#x27;Hello. World!&#x27;</span>;</span><br><span class="line"><span class="variable">$escaped_str</span> = <span class="title function_ invoke__">preg_quote</span>(<span class="variable">$str</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$escaped_str</span>;</span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="http://zzy20060723.github.io">hi</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://zzy20060723.github.io/2025/03/31/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">http://zzy20060723.github.io/2025/03/31/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2025/03/30/php/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2"></div></div><div class="info-2"><div class="info-item-1">表达式表达式是 PHP 中最基本的构建块，它是由值、变量、运算符和函数调用组合而成的一段代码，能计算出一个值。PHP 中的表达式可以是简单的字面量，也可以是复杂的嵌套结构。 1. 字面量表达式字面量是直接表示值的表达式，常见的有：  整数：如 10、-20 。 浮点数：如 3.14、-0.5 。 字符串：可以用单引号或双引号括起来，例如 &#39;hello&#39;、&quot;world&quot; 。 布尔值：true 和 false 。 空值：null 。  示例代码： 1234567&lt;?php$int = 10;$float = 3.14;$string = &#x27;PHP is great&#x27;;$bool = true;$nullValue = null;?&gt;  2. 变量表达式变量用于存储值，在表达式中可以使用变量来引用这些值。变量名以美元符号 $ 开头。 示例代码： 123456&lt;?php$a = 5;$b = 3;$sum = $a + $b; // 变量参与表达式计算echo $sum; ?&gt;  3....</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">hi</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">9</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">1.</span> <span class="toc-text">正则表达式基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%AD%97%E7%AC%A6%E7%B1%BB"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">1. 字符类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%85%83%E5%AD%97%E7%AC%A6"><span class="toc-number">1.0.0.2.</span> <span class="toc-text">2. 元字符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E9%87%8F%E8%AF%8D"><span class="toc-number">1.0.0.3.</span> <span class="toc-text">3. 量词</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E8%BE%B9%E7%95%8C%E5%8C%B9%E9%85%8D"><span class="toc-number">1.0.0.4.</span> <span class="toc-text">4. 边界匹配</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E5%88%86%E9%9A%94%E7%AC%A6"><span class="toc-number">1.0.0.5.</span> <span class="toc-text">5.分隔符</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%94%A8%E6%B3%95%E7%A4%BA%E4%BE%8B"><span class="toc-number">2.</span> <span class="toc-text">正则表达式用法示例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%8C%B9%E9%85%8D%E6%89%8B%E6%9C%BA%E5%8F%B7%E7%A0%81"><span class="toc-number">2.0.0.1.</span> <span class="toc-text">1. 匹配手机号码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E9%87%8A"><span class="toc-number">2.0.0.2.</span> <span class="toc-text">解释</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%8C%B9%E9%85%8D%E9%82%AE%E7%AE%B1%E5%9C%B0%E5%9D%80"><span class="toc-number">2.0.0.3.</span> <span class="toc-text">2. 匹配邮箱地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E9%87%8A-1"><span class="toc-number">2.0.0.4.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PHP-%E4%B8%AD%E7%9A%84%E6%AD%A3%E5%88%99%E5%87%BD%E6%95%B0"><span class="toc-number">2.0.1.</span> <span class="toc-text">PHP 中的正则函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-preg-match"><span class="toc-number">2.0.2.</span> <span class="toc-text">1. preg_match</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="toc-number">2.0.3.</span> <span class="toc-text">返回值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-preg-match-all"><span class="toc-number">2.0.4.</span> <span class="toc-text">2. preg_match_all</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC-1"><span class="toc-number">2.0.5.</span> <span class="toc-text">返回值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-preg-replace"><span class="toc-number">2.0.6.</span> <span class="toc-text">3. preg_replace</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-preg-replace-callback"><span class="toc-number">2.0.7.</span> <span class="toc-text">4. preg_replace_callback</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-preg-replace-callback-array"><span class="toc-number">2.0.8.</span> <span class="toc-text">5. preg_replace_callback_array</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-preg-split"><span class="toc-number">2.0.9.</span> <span class="toc-text">6. preg_split</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-preg-grep"><span class="toc-number">2.0.10.</span> <span class="toc-text">7. preg_grep</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-preg-last-error"><span class="toc-number">2.0.11.</span> <span class="toc-text">8. preg_last_error</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-preg-last-error-msg"><span class="toc-number">2.0.12.</span> <span class="toc-text">9. preg_last_error_msg</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-preg-quote"><span class="toc-number">2.0.13.</span> <span class="toc-text">10. preg_quote</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/31/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" title="Untitled">Untitled</a><time datetime="2025-03-31T05:19:52.126Z" title="Created 2025-03-31 13:19:52">2025-03-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/30/php/" title="Untitled">Untitled</a><time datetime="2025-03-30T04:01:49.146Z" title="Created 2025-03-30 12:01:49">2025-03-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/16/%EF%BC%88.htaccess%EF%BC%89/" title="Untitled">Untitled</a><time datetime="2025-03-16T09:04:15.550Z" title="Created 2025-03-16 17:04:15">2025-03-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/16/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E7%BB%95%E8%BF%87%E9%A2%98%E8%A7%A3/" title="Untitled">Untitled</a><time datetime="2025-03-16T09:03:53.955Z" title="Created 2025-03-16 17:03:53">2025-03-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/16/mimn%E9%A2%98%E8%A7%A3/" title="Untitled">Untitled</a><time datetime="2025-03-16T09:03:33.929Z" title="Created 2025-03-16 17:03:33">2025-03-16</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By hi</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

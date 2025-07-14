@@ -1,0 +1,248 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>学习日常 | 学习日常</title><meta name="author" content="hi"><meta name="copyright" content="hi"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="WEBJava Code Analysis!?!启动题目可以看到有一个网址和一份源代码； 网址进入是一个登陆界面，登陆后有一个flag的PDF需要Admin权限查看。源代码是Java写的。同时题目中还给出了四个提示大意为关注’controllers’, ‘services’ and ‘security’这三个文件和jwt的两个属性和密钥在代码的位置。 直接把整个项目喂给AI可以知道默认生成一个普通">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习日常">
+<meta property="og:url" content="http://zzy20060723.github.io/2025/07/08/picoCTF-2023/index.html">
+<meta property="og:site_name" content="学习日常">
+<meta property="og:description" content="WEBJava Code Analysis!?!启动题目可以看到有一个网址和一份源代码； 网址进入是一个登陆界面，登陆后有一个flag的PDF需要Admin权限查看。源代码是Java写的。同时题目中还给出了四个提示大意为关注’controllers’, ‘services’ and ‘security’这三个文件和jwt的两个属性和密钥在代码的位置。 直接把整个项目喂给AI可以知道默认生成一个普通">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://zzy20060723.github.io/img/butterfly-icon.png">
+<meta property="article:published_time" content="2025-07-08T13:14:35.683Z">
+<meta property="article:modified_time" content="2025-07-14T07:22:12.847Z">
+<meta property="article:author" content="hi">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://zzy20060723.github.io/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "url": "http://zzy20060723.github.io/2025/07/08/picoCTF-2023/",
+  "image": "http://zzy20060723.github.io/img/butterfly-icon.png",
+  "datePublished": "2025-07-08T13:14:35.683Z",
+  "dateModified": "2025-07-14T07:22:12.847Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "hi",
+      "url": "http://zzy20060723.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="http://zzy20060723.github.io/2025/07/08/picoCTF-2023/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '学习日常',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">学习日常</span></a><a class="nav-page-title" href="/"><span class="site-name">学习日常</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Untitled</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-07-08T13:14:35.683Z" title="Created 2025-07-08 21:14:35">2025-07-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-07-14T07:22:12.847Z" title="Updated 2025-07-14 15:22:12">2025-07-14</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h1><h2 id="Java-Code-Analysis"><a href="#Java-Code-Analysis" class="headerlink" title="Java Code Analysis!?!"></a>Java Code Analysis!?!</h2><p>启动题目可以看到有一个网址和一份源代码；</p>
+<p>网址进入是一个登陆界面，登陆后有一个flag的PDF需要Admin权限查看。源代码是Java写的。同时题目中还给出了四个提示大意为关注’controllers’, ‘services’ and ‘security’这三个文件和jwt的两个属性和密钥在代码的位置。</p>
+<p>直接把整个项目喂给AI可以知道默认生成一个普通用户user和一个Admin用户Admin他们的用户名和邮箱相同，密钥根据注释可知是一个固定的值1234；所以这道题的思路为使用user登录再升权到Admin。</p>
+<p>首先登陆</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zzy20060723/image/image-20250708212742372.png" alt="image-20250708212742372"></p>
+<p>按f12可以看到当前账户的jwt令牌</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zzy20060723/image/image-20250708212904512.png" alt="image-20250708212904512"></p>
+<p>我们已知密钥为1234是可以直接在<a target="_blank" rel="noopener" href="https://www.bejson.com/jwt/">jwt解密&#x2F;加密 - bejson在线工具</a>修改我们的token</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zzy20060723/image/image-20250708213028880.png" alt="image-20250708213028880"></p>
+<p>通过代码我们知道了默认Admin用户的用户名和邮箱，其中userld是账户权限Admin用户为2，user用户为1，其他为6；</p>
+<p>修改之后我们就有足够的权限去查看flag的PDF</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zzy20060723/image/image-20250708213343131.png" alt="image-20250708213343131"></p>
+<h2 id="SOAP"><a href="#SOAP" class="headerlink" title="SOAP"></a>SOAP</h2><p>打开题目看到有一条提示“XML external entity Injection”提示我们是xxeF12查看源码发现两个可疑文件</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zzy20060723/image/image-20250709095838646.png" alt="image-20250709095838646"></p>
+<p>证实了网站有xxe漏洞；题目上还有“Can you read the &#x2F;etc&#x2F;passwd file?”想让我们读取&#x2F;etc&#x2F;passwd 这个文件</p>
+<p>点击按钮看到每一个都会有显示且现实的位置在<data><ID>3</ID></data>所以我们通过这个来把文件内容显示出来</p>
+<p>使用bp抓包修改后即可得到</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zzy20060723/image/image-20250709101619877.png" alt="image-20250709101619877"></p>
+<h2 id="More-SQLi"><a href="#More-SQLi" class="headerlink" title="More SQLi"></a>More SQLi</h2><p>SQLi注入是一种 <strong>代码注入攻击</strong>，攻击者通过在应用程序的输入字段中插入恶意 SQL 代码，从而篡改或执行未授权的数据库操作。这种漏洞通常源于应用程序未对用户输入进行严格过滤</p>
+<p>题目已经说明是SQLiLite的注入</p>
+<p>启动题目是一个登陆界面随便输入可以直接看到她的查询语句</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zzy20060723/image/image-20250709102059246.png" alt="image-20250709102059246"></p>
+<p>有了查询语句可以构<code>&#39;or 1 and 1--</code>即可绕过</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zzy20060723/image/image-20250709102232465.png"></p>
+<p>还是一个注入，先查看表结构，看到了flag</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zzy20060723/image/image-20250709103013063.png"></p>
+<p>从more_table中读取flag的内容</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zzy20060723/image/image-20250709103353427.png" alt="image-20250709103353427"></p>
+<h2 id="MatchTheRegex"><a href="#MatchTheRegex" class="headerlink" title="MatchTheRegex"></a>MatchTheRegex</h2><p>启动题目后可以看到是一个输入框输入东西之后会出现弹窗</p>
+<p>查看源码看到了这部分和输入框的数据处理有关这部分代码将我们的输入发送到&#x2F;flag这个节点之后再见返回的内容显示在弹窗中</p>
+<table>
+<thead>
+<tr>
+<th>function send_request() {</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>let val &#x3D; document.getElementById(“name”).value;</td>
+</tr>
+<tr>
+<td>&#x2F;&#x2F; ^p…..F!?</td>
+</tr>
+<tr>
+<td>fetch(<code>/flag?input=$&#123;val&#125;</code>)</td>
+</tr>
+<tr>
+<td>.then(res &#x3D;&gt; res.text())</td>
+</tr>
+<tr>
+<td>.then(res &#x3D;&gt; {</td>
+</tr>
+<tr>
+<td>const res_json &#x3D; JSON.parse(res);</td>
+</tr>
+<tr>
+<td>alert(res_json.flag)</td>
+</tr>
+<tr>
+<td>return false;</td>
+</tr>
+<tr>
+<td>})</td>
+</tr>
+<tr>
+<td>return false;</td>
+</tr>
+<tr>
+<td>}</td>
+</tr>
+</tbody></table>
+<p>这里有一个注释p…..F!?看起来像正则表达式的形式结合题目基本可以确定就是正则表达式，将他输入之后弹窗返回了flag。</p>
+<h2 id="findme"><a href="#findme" class="headerlink" title="findme"></a>findme</h2><p>题目的简介告诉我们用户名为test密码为test！</p>
+<p>输入之后又看到重定向，所以bp抓包</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zzy20060723/image/image-20250709104931181.png" alt="image-20250709104931181"></p>
+<p>看到两个重定向的页面，这两个页面的id为flag的两部分</p>
+<h1 id="密码学"><a href="#密码学" class="headerlink" title="密码学"></a>密码学</h1><h3 id="rotation"><a href="#rotation" class="headerlink" title="rotation"></a>rotation</h3><p>下载附件之后打开看到<code>xqkwKBN&#123;z0bib1wv_l3kzgxb3l_555957n3&#125;</code>,直接放进随波逐流解码得到flag</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zzy20060723/image/image-20250714094616223.png" alt="image-20250714094616223"></p>
+<h3 id="ReadMyCert"><a href="#ReadMyCert" class="headerlink" title="ReadMyCert"></a>ReadMyCert</h3><p>CSR 文件（证书签名请求）本身的内容采用 <strong>非对称加密技术</strong> 进行保护，但需要注意的是：<br><strong>CSR 文件的核心作用是将公钥和身份信息安全地传递给 CA 机构，而非完全加密整个文件内容</strong></p>
+<p>使用记事本打开这个文件看到里面的内容很可能是base64编码</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zzy20060723/image/image-20250714111756554.png" alt="image-20250714111756554"></p>
+<p>解码之后上面有flag</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zzy20060723/image/image-20250714111830753.png" alt="image-20250714111830753"></p>
+<h3 id="HideToSee"><a href="#HideToSee" class="headerlink" title="HideToSee"></a>HideToSee</h3><p>下载附件是一张图片，放进kali中使用“file atbash.jpg ”命令查看文件类型发现是JPEG 文件</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zzy20060723/image/image-20250714151535147.png" alt="image-20250714151535147"></p>
+<p>在使用“steghide –extract -sf atbash.jpg”命令查看图片中是否有隐藏数据</p>
+<p>发现有隐藏的数据查看是flag</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zzy20060723/image/image-20250714152003520.png" alt="image-20250714152003520"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="http://zzy20060723.github.io">hi</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://zzy20060723.github.io/2025/07/08/picoCTF-2023/">http://zzy20060723.github.io/2025/07/08/picoCTF-2023/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2025/05/24/usb%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/" title="usb流量分析"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">usb流量分析</div></div><div class="info-2"><div class="info-item-1">usb流量分析USB HID 协议的核心作用USB HID（Human Interface Device）协议是 USB 协议体系中专门用于人机接口设备的通信协议，主要用于实现设备与主机之间的交互控制。它是 USB 协议的一个子类（Class），广泛应用于键盘、鼠标、游戏手柄、触摸板、数位板等设备。 1. 标准化人机交互通信 统一接口规范：为不同厂商的人机接口设备提供统一的通信标准，确保设备在 Windows、Linux、macOS 等系统中即插即用。 简化开发流程：设备厂商无需自定义复杂协议，只需遵循 HID 规范即可实现基本功能（如键盘按键、鼠标移动）。  2. 支持实时交互与低延迟 实时性要求高：HID 设备（如键盘、鼠标）需要实时反馈用户操作，HID 协议通过 ** 中断传输（Interrupt Transfer）** 机制保证数据传输的及时性，延迟通常低于 10ms。 小数据量优化：针对按键状态、鼠标位移等小数据量场景设计，单次传输数据通常为 1~64 字节（典型为 8 字节或 32 字节）。  3. 定义设备功能与报告格式 HID...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">hi</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#WEB"><span class="toc-number">1.</span> <span class="toc-text">WEB</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java-Code-Analysis"><span class="toc-number">1.1.</span> <span class="toc-text">Java Code Analysis!?!</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SOAP"><span class="toc-number">1.2.</span> <span class="toc-text">SOAP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#More-SQLi"><span class="toc-number">1.3.</span> <span class="toc-text">More SQLi</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MatchTheRegex"><span class="toc-number">1.4.</span> <span class="toc-text">MatchTheRegex</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#findme"><span class="toc-number">1.5.</span> <span class="toc-text">findme</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E5%AD%A6"><span class="toc-number">2.</span> <span class="toc-text">密码学</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#rotation"><span class="toc-number">2.0.1.</span> <span class="toc-text">rotation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ReadMyCert"><span class="toc-number">2.0.2.</span> <span class="toc-text">ReadMyCert</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HideToSee"><span class="toc-number">2.0.3.</span> <span class="toc-text">HideToSee</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/08/picoCTF-2023/" title="Untitled">Untitled</a><time datetime="2025-07-08T13:14:35.683Z" title="Created 2025-07-08 21:14:35">2025-07-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/24/usb%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/" title="usb流量分析">usb流量分析</a><time datetime="2025-05-23T16:00:00.000Z" title="Created 2025-05-24 00:00:00">2025-05-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/11/%E5%9B%BE%E7%89%87/" title="图片">图片</a><time datetime="2025-05-10T16:00:00.000Z" title="Created 2025-05-11 00:00:00">2025-05-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/04/23/Java/" title="Java知识">Java知识</a><time datetime="2025-04-22T16:00:00.000Z" title="Created 2025-04-23 00:00:00">2025-04-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/31/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" title="正则表达式">正则表达式</a><time datetime="2025-03-30T16:00:00.000Z" title="Created 2025-03-31 00:00:00">2025-03-31</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By hi</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

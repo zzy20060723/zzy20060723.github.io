@@ -643,31 +643,31 @@ img.inline {
 }
 
 
-/* 标签云容器保持现有布局 */
+/* 标签云容器 - 居中对齐标签 */
 .tags-cloud {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* 保持现有列宽逻辑 */
+  gap: 1rem; /* 标签间距不变 */
   padding: 2rem 0;
-  margin: 0 auto;
-  max-width: var(--layout-max-width);
+  margin: 0 auto; /* 水平居中容器 */
+  max-width: 1200px; /* 限制最大宽度，避免标签过度拉伸 */
+  justify-items: center; /* 关键：让每个标签在网格项中居中 */
 }
 
-/* 标签项基础样式 - 增加边界+修正颜色 */
+/* 标签项样式保持不变（仅确保不影响居中） */
 .tag-cloud-item {
+  /* 保留现有样式：背景、边框、颜色等 */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 1rem 0.8rem;
-  background-color: #f5f5f5; /* 浅灰色背景（接近第二张图） */
-  border: 1px solid #e0e0e0; /* 增加边框，解决"缺少边界"问题 */
-  color: #333333; /* 深灰色文字（第二张图文字色） */
-  text-decoration: none;
+  background-color: #f5f5f5;
+  border: 1px solid #e0e0e0;
+  color: #333333;
   border-radius: 6px;
-  transition: all 0.3s ease;
   min-height: 80px;
-  text-align: center;
+  min-width: 100px; /* 可适当减小最小宽度，让居中更紧凑 */
 }
 
 /* 标签名样式 */

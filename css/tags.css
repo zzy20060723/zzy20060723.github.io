@@ -639,89 +639,71 @@ img.inline {
 .tags-cloud {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.3rem; /* 适配页面间距，避免标签拥挤 */
+  gap: 1.1rem; /* 略微减小标签间距，适配窄容器 */
   justify-content: center;
   margin: 0 auto;
-  padding: 6rem 2rem 3.5rem; /* 顶部6rem实现明显下移，与标题拉开距离 */
-  max-width: 1150px; /* 匹配页面容器宽度 */
+  padding: 6rem 1.5rem 3.5rem; /* 下移距离保持不变 */
+  max-width: 900px; /* 关键：缩小最大宽度（原1150px→900px，可按需调整） */
 }
 
-/* 单个标签：垂直排列 + 卡片风格 */
+/* 单个标签：保持原有样式，仅微调内边距适配窄容器 */
 .tag-cloud-item {
   display: flex;
-  flex-direction: column; /* 标签名在上，数量在下 */
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1.4rem 1.1rem;
+  padding: 1.3rem 1rem; /* 轻微减小内边距，更紧凑 */
   border-radius: 8px;
-  background-color: rgba(0, 0, 0, 0.02); /* 更浅的背景，适配页面浅色风格 */
-  color: #333; /* 文字深色，提高可读性 */
+  background-color: rgba(0, 0, 0, 0.02);
+  color: #333;
   text-decoration: none;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* 平滑过渡 */
-  min-width: 95px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04); /* 更柔和的阴影 */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  min-width: 90px; /* 略微减小最小宽度，适配窄容器 */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
-/* 标签名样式（突出显示） */
-.tag-name {
-  font-weight: 600;
-  line-height: 1.4;
-  margin-bottom: 0.6rem; /* 增大与数量块的间距 */
-  font-size: 1rem;
-}
-
-/* 数量样式（深色小胶囊） */
-.tag-count {
-  font-size: 0.72rem;
-  color: #fff;
-  background-color: #ff6b6b; /* 页面强调色，与导航hover色一致 */
-  padding: 0.22rem 0.8rem;
-  border-radius: 18px; /* 更圆润的胶囊形状 */
-  opacity: 0.95;
-}
-
-/* 尺寸分级：按现有类名精准匹配，宽高差异化 */
+/* 尺寸分级：同步缩小宽高，适配窄容器 */
 .tag-cloud-item--small {
-  min-width: 95px;
-  height: 88px;
-  font-size: 0.92rem;
+  min-width: 90px;
+  height: 85px;
+  font-size: 0.9rem;
 }
-.tag-cloud-item--small .tag-name { font-size: 0.92rem; }
+.tag-cloud-item--small .tag-name { font-size: 0.9rem; }
 
 .tag-cloud-item--medium {
-  min-width: 105px;
-  height: 98px;
-  padding: 1.5rem 1.2rem;
-  font-size: 1.02rem;
+  min-width: 100px;
+  height: 95px;
+  padding: 1.4rem 1.1rem;
+  font-size: 1rem;
 }
-.tag-cloud-item--medium .tag-name { font-size: 1.02rem; }
+.tag-cloud-item--medium .tag-name { font-size: 1rem; }
 
 .tag-cloud-item--large {
+  min-width: 105px;
+  height: 105px;
+  padding: 1.5rem 1.2rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+.tag-cloud-item--large .tag-name { font-size: 1.05rem; }
+
+.tag-cloud-item--xlarge {
   min-width: 115px;
-  height: 108px;
+  height: 115px;
   padding: 1.6rem 1.3rem;
-  font-size: 1.12rem;
+  font-size: 1.15rem;
   font-weight: 700;
+  border: 1px solid rgba(255, 107, 107, 0.35);
+  background-color: rgba(255, 107, 107, 0.03);
 }
-.tag-cloud-item--large .tag-name { font-size: 1.12rem; }
+.tag-cloud-item--xlarge .tag-name { font-size: 1.15rem; }
 
-.tag-cloud-item--xlarge { /* 最大标签（21篇）专属样式 */
-  min-width: 125px;
-  height: 118px;
-  padding: 1.7rem 1.4rem;
-  font-size: 1.22rem;
-  font-weight: 700;
-  border: 1px solid rgba(255, 107, 107, 0.35); /* 强调色边框，突出热门标签 */
-  background-color: rgba(255, 107, 107, 0.03); /* 轻微底色，增强识别度 */
-}
-.tag-cloud-item--xlarge .tag-name { font-size: 1.22rem; }
-
-/* 悬停交互（与页面导航hover风格统一） */
+/* 以下样式（悬停、暗色模式、响应式）保持不变，无需修改 */
 .tag-cloud-item:hover {
   background-color: #ff6b6b;
   color: #fff !important;
-  transform: translateY(-4px); /* 明显上浮，增强交互感 */
-  box-shadow: 0 6px 16px rgba(255, 107, 107, 0.15); /* 强调色阴影，呼应主题 */
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(255, 107, 107, 0.15);
 }
 .tag-cloud-item:hover .tag-count {
   background-color: #fff;
@@ -729,7 +711,6 @@ img.inline {
   opacity: 1;
 }
 
-/* 暗色模式适配（保持页面一致性） */
 body.dark-mode .tag-cloud-item {
   background-color: #2d2d2d;
   color: #e2e8f0;
@@ -753,11 +734,11 @@ body.dark-mode .tag-cloud-item:hover .tag-count {
   color: #ff6b6b;
 }
 
-/* 响应式调整（适配移动端页面） */
 @media (max-width: 768px) {
   .tags-cloud {
     gap: 1rem;
-    padding: 4.5rem 1rem 2.5rem; /* 减少下移距离，适配小屏幕 */
+    padding: 4.5rem 1rem 2.5rem;
+    max-width: 100%; /* 移动端取消最大宽度限制，全屏显示 */
   }
   .tag-cloud-item {
     min-width: auto;
@@ -765,14 +746,14 @@ body.dark-mode .tag-cloud-item:hover .tag-count {
     padding: 1.2rem 1rem;
   }
   .tag-cloud-item--xlarge {
-    border: none; /* 移动端隐藏边框，节省空间 */
+    border: none;
   }
 }
 
-/* 平板适配（769px-1024px） */
 @media (min-width: 769px) and (max-width: 1024px) {
   .tags-cloud {
     gap: 1.1rem;
     padding: 5rem 1.5rem 3rem;
+    max-width: 800px; /* 平板端适配窄宽度 */
   }
 }

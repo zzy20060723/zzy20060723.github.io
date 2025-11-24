@@ -643,7 +643,7 @@ img.inline {
   justify-content: center;
   margin: 0 auto;
   padding: 6rem 1.5rem 3.5rem; /* 下移距离保持不变 */
-  max-width: 900px; /* 关键：缩小最大宽度（原1150px→900px，可按需调整） */
+  max-width: 746px; /* 关键：缩小最大宽度（原1150px→900px，可按需调整） */
 }
 
 /* 单个标签：保持原有样式，仅微调内边距适配窄容器 */

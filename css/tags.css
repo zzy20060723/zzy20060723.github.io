@@ -649,7 +649,7 @@ img.inline {
   flex-wrap: wrap; /* 自动换行，实现每行数量不固定 */
   justify-content: center; /* 整体居中对齐 */
   gap: 1.5rem; /* 标签之间的间距 */
-  padding: 3.5rem 1rem 2rem; /* 顶部内边距增加，实现向下移动 */
+  padding: 5rem 1rem 2rem; /* 顶部内边距增加，实现向下移动 */
   margin: 0 auto;
   max-width: 1200px; /* 限制最大宽度，避免过宽 */
 }

@@ -643,91 +643,123 @@ img.inline {
 }
 
 
-/* 标签云容器 - 居中对齐标签 */
+/* 标签云容器 - 向下移动+流式布局（每行数量不固定） */
 .tags-cloud {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* 保持现有列宽逻辑 */
-  gap: 1rem; /* 标签间距不变 */
-  padding: 2rem 0;
-  margin: 0 auto; /* 水平居中容器 */
-  max-width: 1200px; /* 限制最大宽度，避免标签过度拉伸 */
-  justify-items: center; /* 关键：让每个标签在网格项中居中 */
+  display: flex;
+  flex-wrap: wrap; /* 自动换行，实现每行数量不固定 */
+  justify-content: center; /* 整体居中对齐 */
+  gap: 1.5rem; /* 标签之间的间距 */
+  padding: 3.5rem 1rem 2rem; /* 顶部内边距增加，实现向下移动 */
+  margin: 0 auto;
+  max-width: 1200px; /* 限制最大宽度，避免过宽 */
 }
 
-/* 标签项样式保持不变（仅确保不影响居中） */
+/* 标签基础样式（通用属性） */
 .tag-cloud-item {
-  /* 保留现有样式：背景、边框、颜色等 */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1rem 0.8rem;
   background-color: #f5f5f5;
   border: 1px solid #e0e0e0;
   color: #333333;
   border-radius: 6px;
-  min-height: 80px;
-  min-width: 100px; /* 可适当减小最小宽度，让居中更紧凑 */
+  text-decoration: none;
+  transition: all 0.3s ease;
+  text-align: center;
+  white-space: normal; /* 文字过长自动换行 */
+  word-break: break-word; /* 强制换行避免溢出 */
 }
 
-/* 标签名样式 */
-.tag-name {
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 0.3rem;
-}
-
-/* 标签数量样式（深色方块，接近第二张图） */
-.tag-count {
-  font-size: 0.8rem;
-  color: white;
-  background-color: #333333; /* 深灰色数量方块（第二张图风格） */
-  padding: 0.1rem 0.6rem;
-  border-radius: 4px;
-  min-width: 24px;
-}
-
-/* 按数量区分大小（保持现有逻辑，增强大小差异） */
+/* 1. 最小标签（1-5篇文章） */
 .tag-cloud-item--small {
-  font-size: 0.9rem;
-  padding: 0.8rem 0.6rem;
-  min-height: 70px;
+  width: 100px;
+  height: 80px;
+  padding: 0.5rem;
+  font-size: 0.85rem;
 }
 
+/* 2. 中等标签（6-10篇文章） */
 .tag-cloud-item--medium {
+  width: 120px;
+  height: 100px;
+  padding: 0.7rem;
   font-size: 1rem;
-  padding: 1rem 0.8rem;
-  min-height: 80px;
 }
 
+/* 3. 大标签（11-20篇文章） */
 .tag-cloud-item--large {
-  font-size: 1.1rem;
-  padding: 1.2rem 1rem;
-  min-height: 90px;
-  font-weight: 700;
+  width: 140px;
+  height: 120px;
+  padding: 0.9rem;
+  font-size: 1.15rem;
 }
 
+/* 4. 最大标签（20+篇文章） */
 .tag-cloud-item--xlarge {
-  font-size: 1.2rem;
-  padding: 1.4rem 1.2rem;
-  min-height: 100px;
-  font-weight: 700;
+  width: 160px;
+  height: 140px;
+  padding: 1.1rem;
+  font-size: 1.3rem;
 }
 
-/* 悬停效果（可选优化，保持与主题协调） */
-.tag-cloud-item:hover {
-  background-color: #e0e0e0;
-  border-color: #ccc;
-  transform: translateY(-2px);
+/* 标签内部文字细节调整 */
+.tag-name {
+  line-height: 1.3; /* 优化文字行高 */
+  font-weight: 500;
+}
+.tag-count {
+  margin-top: 0.4rem;
+  font-size: 0.8em; /* 数量文字比标签名小一号 */
+  opacity: 0.8;
+}
+/* 最大标签的数量间距稍大 */
+.tag-cloud-item--xlarge .tag-count {
+  margin-top: 0.6rem;
 }
 
-/* 暗色模式适配（保持一致性） */
+/* 悬停效果（尺寸越大，上浮越明显） */
+.tag-cloud-item--small:hover { transform: translateY(-2px); }
+.tag-cloud-item--medium:hover { transform: translateY(-3px); }
+.tag-cloud-item--large:hover { transform: translateY(-4px); }
+.tag-cloud-item--xlarge:hover { transform: translateY(-5px); }
+
+/* 暗色模式适配 */
 body.dark-mode .tag-cloud-item {
   background-color: #2d3748;
   border-color: #4a5568;
   color: #e2e8f0;
 }
-
 body.dark-mode .tag-count {
   background-color: #1a202c;
+  opacity: 0.9;
+}
+
+/* 移动端响应式调整（屏幕宽度 ≤ 768px） */
+@media (max-width: 768px) {
+  .tags-cloud {
+    gap: 1rem; /* 减小间距 */
+    padding: 2.5rem 0.5rem 1.5rem; /* 减小上下内边距 */
+  }
+  
+  .tag-cloud-item--small {
+    width: 80px;
+    height: 65px;
+    font-size: 0.8rem;
+  }
+  .tag-cloud-item--medium {
+    width: 95px;
+    height: 80px;
+    font-size: 0.9rem;
+  }
+  .tag-cloud-item--large {
+    width: 110px;
+    height: 95px;
+    font-size: 1rem;
+  }
+  .tag-cloud-item--xlarge {
+    width: 125px;
+    height: 110px;
+    font-size: 1.1rem;
+  }
 }

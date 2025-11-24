@@ -642,112 +642,103 @@ img.inline {
   }
 }
 
-/* ===== Tags Cloud Styles - 方块布局标签云 ===== */
+/* ===== Tags Cloud Styles - 仿2am.top标签效果 ===== */
 .tags-cloud {
-  display: grid; /* 网格布局实现方块排列 */
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* 自动适应列数 */
-  gap: 1rem; /* 标签间距 */
-  padding: 20px 0;
-  margin: 2rem auto;
-  max-width: var(--layout-max-width); /* 与主题最大宽度一致 */
+  display: flex;
+  flex-wrap: wrap; /* 自动换行，每行数量不固定 */
+  gap: 0.8rem; /* 标签间距 */
+  padding: 2rem 0;
+  margin: 0 auto;
+  max-width: var(--layout-max-width);
+  justify-content: flex-start; /* 左对齐，模拟示例布局 */
 }
 
-/* 标签项基础样式（方块+垂直排列） */
+/* 标签项基础样式（底部白色、字体黑色） */
 .tag-cloud-item {
-  display: flex;
-  flex-direction: column; /* 标签名和数量垂直排列 */
-  align-items: center; /* 水平居中 */
+  display: inline-flex;
+  flex-direction: column; /* 标签名+数量垂直排列 */
+  align-items: center;
   justify-content: center;
-  padding: 1.2rem 0.5rem; /* 垂直内边距更大，突出方块感 */
-  background-color: var(--tag-bg, rgba(52, 152, 219, 0.1));
-  color: var(--tag-color, #3498db);
+  padding: 0.8rem 1.2rem;
+  background-color: #ffffff; /* 底部白色背景 */
+  color: #000000; /* 字体黑色 */
   text-decoration: none;
-  border-radius: 6px; /* 轻微圆角 */
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* 轻微阴影增强立体感 */
-  min-height: 80px; /* 保证标签高度一致 */
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* 轻微阴影增强质感 */
+  transition: all 0.2s ease;
+  min-width: 80px;
+  text-align: center;
 }
 
 /* 标签名样式 */
 .tag-name {
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 0.3rem; /* 与数量保持间距 */
-  text-align: center;
+  font-size: clamp(0.9rem, 1.2vw, 1.3rem); /* 基础字体大小，自适应屏幕 */
+  font-weight: 500;
+  margin-bottom: 0.3rem;
 }
 
 /* 标签数量样式（深色小方块） */
 .tag-count {
   font-size: 0.8rem;
-  color: white;
-  background-color: var(--accent-color); /* 用主题色突出数量 */
+  color: #ffffff;
+  background-color: #000000; /* 数量方块黑色 */
   padding: 0.1rem 0.6rem;
-  border-radius: 4px;
+  border-radius: 12px;
   min-width: 24px;
-  text-align: center;
 }
 
-/* 按权重区分大小（数量越多，标签越大） */
+/* 按标签权重动态控制大小（数量越多，标签越大） */
+/* 权重1：数量1-5 */
 .tag-cloud-item--small {
   font-size: 0.9rem;
-  padding: 1rem 0.5rem;
-  min-height: 70px;
+  padding: 0.6rem 1rem;
+  min-width: 70px;
 }
-
+/* 权重2：数量6-10 */
 .tag-cloud-item--medium {
   font-size: 1rem;
-  padding: 1.2rem 0.5rem;
-  min-height: 80px;
+  padding: 0.8rem 1.2rem;
+  min-width: 80px;
 }
-
+/* 权重3：数量11-20 */
 .tag-cloud-item--large {
   font-size: 1.1rem;
-  padding: 1.4rem 0.5rem;
-  min-height: 90px;
-  font-weight: 700; /* 数量多的标签加粗 */
+  padding: 1rem 1.4rem;
+  min-width: 90px;
+  font-weight: 600;
+}
+/* 权重4：数量20+ */
+.tag-cloud-item--xlarge {
+  font-size: 1.2rem;
+  padding: 1.2rem 1.6rem;
+  min-width: 100px;
+  font-weight: 700;
 }
 
-/* 悬停效果 */
+/* 悬浮效果（背景红色、字体白色） */
 .tag-cloud-item:hover {
-  transform: translateY(-3px); /* 轻微上浮 */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 增强阴影 */
-  background-color: var(--accent-color); /* 背景色变为主题色 */
-  color: white; /* 文字变白 */
+  background-color: #ff0000; /* 悬浮背景红色 */
+  color: #ffffff; /* 悬浮字体白色 */
+  transform: translateY(-2px); /* 轻微上浮 */
+  box-shadow: 0 2px 6px rgba(255, 0, 0, 0.2);
 }
 
 .tag-cloud-item:hover .tag-count {
-  background-color: white; /* 数量方块变白 */
-  color: var(--accent-color); /* 数量文字变主题色 */
+  background-color: #ffffff; /* 悬浮时数量方块变白 */
+  color: #ff0000; /* 悬浮时数量文字变红 */
 }
 
-/* 暗色模式适配 */
+/* 暗色模式适配（可选） */
 body.dark-mode .tag-cloud-item {
-  background-color: var(--tag-dark-bg, #2d3748);
-  color: var(--tag-dark-color, #90cdf4);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  background-color: #2d3748;
+  color: #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
-
 body.dark-mode .tag-cloud-item:hover {
-  background-color: var(--accent-color);
-  color: white;
+  background-color: #ff0000;
+  color: #ffffff;
 }
-
 body.dark-mode .tag-count {
-  color: white;
   background-color: #000000;
-  padding: 2px 6px;
-  border-radius: 10px;
-}
-
-/* 标签云响应式调整 */
-@media (max-width: 768px) {
-  .tags-cloud {
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* 移动端缩小标签宽度 */
-    gap: 0.75rem;
-  }
-  
-  .tag-cloud-item {
-    padding: 0.75rem 0.5rem;
-    min-height: 70px;
-  }
+  color: #ffffff;
 }

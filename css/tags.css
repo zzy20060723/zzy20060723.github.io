@@ -753,3 +753,99 @@ body.dark-mode .post-category a {
 body.dark-mode .read-more {
   color: var(--accent-color);
 }
+/* ===== Tags Cloud Styles ===== */
+.tags-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px; /* 统一间距为12px */
+  justify-content: center;
+  padding: 20px 0;
+  margin: 2rem 0; /* 保留原始的上下外边距 */
+}
+
+/* 标签项基础样式（横向排列） */
+.tag-cloud-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background-color: var(--tag-bg, rgba(52, 152, 219, 0.1));
+  color: var(--tag-color, #3498db);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+/* 标签数量样式（左右分布） */
+.tag-cloud-item .tag-count {
+  margin-left: 6px;
+  font-size: 0.8rem;
+  opacity: 0.8;
+  background: rgba(0, 0, 0, 0.05);
+  padding: 1px 6px;
+  border-radius: 8px;
+}
+
+/* 按权重区分大小 */
+.tag-cloud-item--small {
+  font-size: 0.85rem;
+  padding: 4px 10px;
+  min-width: 80px; /* 保留原始的最小宽度，确保一致性 */
+}
+
+.tag-cloud-item--medium {
+  font-size: 0.95rem;
+  padding: 6px 14px;
+  min-width: 100px;
+}
+
+.tag-cloud-item--large {
+  font-size: 1.1rem;
+  padding: 8px 18px;
+  font-weight: 500;
+  min-width: 120px;
+}
+
+/* 悬停效果（呼应主题按钮风格） */
+.tag-cloud-item:hover {
+  background-color: var(--accent-color);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tag-cloud-item:hover .tag-count {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* 暗色模式适配 */
+body.dark-mode .tag-cloud-item {
+  background-color: var(--tag-dark-bg, #2d3748);
+  color: var(--tag-dark-color, #90cdf4);
+}
+
+body.dark-mode .tag-cloud-item:hover {
+  background-color: var(--accent-color);
+}
+
+body.dark-mode .tag-count {
+  color: #ffffff;
+  opacity: 1;
+  background-color: #000000;
+  padding: 2px 6px;
+  border-radius: 10px;
+  margin-top: 0; /* 覆盖原始纵向排列的margin-top */
+}
+
+/* 响应式调整（复用原始逻辑） */
+@media (max-width: 768px) {
+  .tags-cloud {
+    gap: 0.75rem;
+  }
+  
+  .tag-cloud-item {
+    padding: 0.75rem;
+  }
+}

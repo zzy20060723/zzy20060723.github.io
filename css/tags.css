@@ -635,116 +635,144 @@ img.inline {
   }
 }
 
-/* 平板设备的响应式调整 */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .post-list {
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  }
-}
-
-
-/* ===== 标签云样式调整 ===== */
+/* ===== Tags Cloud Styles ===== */
 .tags-cloud {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem; /* 与主题其他元素间距一致 */
+  gap: 1.3rem; /* 适配页面间距，避免标签拥挤 */
   justify-content: center;
-  margin: 2rem 0;
-  padding: 4rem 1.5rem 2.5rem; /* 增加顶部距离，解决之前无效果的问题 */
-  max-width: 1100px; /* 匹配主题容器最大宽度 */
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
+  padding: 6rem 2rem 3.5rem; /* 顶部6rem实现明显下移，与标题拉开距离 */
+  max-width: 1150px; /* 匹配页面容器宽度 */
 }
 
-/* 标签基础样式 - 继承主题按钮风格 */
+/* 单个标签：垂直排列 + 卡片风格 */
 .tag-cloud-item {
-  display: inline-flex;
-  flex-direction: column;
+  display: flex;
+  flex-direction: column; /* 标签名在上，数量在下 */
   align-items: center;
   justify-content: center;
-  padding: 1rem 0.8rem; /* 内边距适配文字长度 */
-  border-radius: var(--radius-md); /* 使用主题统一圆角变量 */
-  background-color: rgba(0, 0, 0, 0.03); /* 与主题浅色背景协调 */
-  color: var(--primary-color);
+  padding: 1.4rem 1.1rem;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.02); /* 更浅的背景，适配页面浅色风格 */
+  color: #333; /* 文字深色，提高可读性 */
   text-decoration: none;
-  transition: all 0.3s ease; /* 与主题按钮过渡动画一致 */
-  min-width: 80px; /* 确保标签不挤压变形 */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* 轻微阴影，与卡片风格统一 */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* 平滑过渡 */
+  min-width: 95px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04); /* 更柔和的阴影 */
 }
 
-/* 标签悬停效果 - 与主题按钮hover同步 */
-.tag-cloud-item:hover {
-  background-color: var(--accent-color); /* 使用主题强调色 */
-  color: white !important; /* 强制白色文字，避免被覆盖 */
-  transform: translateY(-3px); /* 与主题卡片悬停动画一致 */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 增强阴影 */
-}
-
-/* 尺寸分级调整（适配你的标签数量） */
-.tag-cloud-item--small {
-  font-size: 0.9rem;
-  min-width: 80px;
-  height: 70px;
-}
-.tag-cloud-item--medium {
-  font-size: 1rem;
-  min-width: 100px;
-  height: 85px;
-}
-.tag-cloud-item--large {
-  font-size: 1.1rem;
-  min-width: 120px;
-  height: 100px;
-}
-.tag-cloud-item--xlarge { /* 新增最大尺寸，适配21篇文章的标签 */
-  font-size: 1.25rem;
-  min-width: 140px;
-  height: 115px;
-  border: 1px solid rgba(255,107,107,0.2); /* 强调色边框 */
-}
-
-/* 标签文字样式细化 */
+/* 标签名样式（突出显示） */
 .tag-name {
   font-weight: 600;
-  margin-bottom: 0.3rem;
-  line-height: 1.3; /* 避免文字换行溢出 */
-}
-.tag-count {
-  font-size: 0.75rem;
-  opacity: 0.8;
-  background: rgba(0,0,0,0.05); /* 数量背景区分 */
-  padding: 0.1rem 0.5rem;
-  border-radius: 10px;
+  line-height: 1.4;
+  margin-bottom: 0.6rem; /* 增大与数量块的间距 */
+  font-size: 1rem;
 }
 
-/* 暗色模式适配（补充完善） */
-body.dark-mode .tag-cloud-item {
-  background-color: #262626; /* 与主题暗色卡片一致 */
-  color: var(--primary-color);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+/* 数量样式（深色小胶囊） */
+.tag-count {
+  font-size: 0.72rem;
+  color: #fff;
+  background-color: #ff6b6b; /* 页面强调色，与导航hover色一致 */
+  padding: 0.22rem 0.8rem;
+  border-radius: 18px; /* 更圆润的胶囊形状 */
+  opacity: 0.95;
 }
-body.dark-mode .tag-cloud-item:hover {
-  background-color: var(--accent-color);
-  color: white !important;
+
+/* 尺寸分级：按现有类名精准匹配，宽高差异化 */
+.tag-cloud-item--small {
+  min-width: 95px;
+  height: 88px;
+  font-size: 0.92rem;
+}
+.tag-cloud-item--small .tag-name { font-size: 0.92rem; }
+
+.tag-cloud-item--medium {
+  min-width: 105px;
+  height: 98px;
+  padding: 1.5rem 1.2rem;
+  font-size: 1.02rem;
+}
+.tag-cloud-item--medium .tag-name { font-size: 1.02rem; }
+
+.tag-cloud-item--large {
+  min-width: 115px;
+  height: 108px;
+  padding: 1.6rem 1.3rem;
+  font-size: 1.12rem;
+  font-weight: 700;
+}
+.tag-cloud-item--large .tag-name { font-size: 1.12rem; }
+
+.tag-cloud-item--xlarge { /* 最大标签（21篇）专属样式 */
+  min-width: 125px;
+  height: 118px;
+  padding: 1.7rem 1.4rem;
+  font-size: 1.22rem;
+  font-weight: 700;
+  border: 1px solid rgba(255, 107, 107, 0.35); /* 强调色边框，突出热门标签 */
+  background-color: rgba(255, 107, 107, 0.03); /* 轻微底色，增强识别度 */
+}
+.tag-cloud-item--xlarge .tag-name { font-size: 1.22rem; }
+
+/* 悬停交互（与页面导航hover风格统一） */
+.tag-cloud-item:hover {
+  background-color: #ff6b6b;
+  color: #fff !important;
+  transform: translateY(-4px); /* 明显上浮，增强交互感 */
+  box-shadow: 0 6px 16px rgba(255, 107, 107, 0.15); /* 强调色阴影，呼应主题 */
+}
+.tag-cloud-item:hover .tag-count {
+  background-color: #fff;
+  color: #ff6b6b;
+  opacity: 1;
+}
+
+/* 暗色模式适配（保持页面一致性） */
+body.dark-mode .tag-cloud-item {
+  background-color: #2d2d2d;
+  color: #e2e8f0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+body.dark-mode .tag-cloud-item--xlarge {
+  background-color: rgba(255, 107, 107, 0.08);
+  border-color: rgba(255, 107, 107, 0.45);
 }
 body.dark-mode .tag-count {
-  background: rgba(255,255,255,0.08); /* 暗色模式数量背景 */
-  color: rgba(255,255,255,0.9);
+  background-color: #1a1a1a;
+  color: #fff;
+}
+body.dark-mode .tag-cloud-item:hover {
+  background-color: #ff6b6b;
+  color: #fff !important;
+  box-shadow: 0 6px 16px rgba(255, 107, 107, 0.25);
+}
+body.dark-mode .tag-cloud-item:hover .tag-count {
+  background-color: #fff;
+  color: #ff6b6b;
 }
 
-/* 响应式调整（与主题其他元素同步） */
+/* 响应式调整（适配移动端页面） */
 @media (max-width: 768px) {
   .tags-cloud {
-    gap: 0.75rem;
-    padding: 3rem 1rem 2rem; /* 移动端顶部距离减少 */
+    gap: 1rem;
+    padding: 4.5rem 1rem 2.5rem; /* 减少下移距离，适配小屏幕 */
   }
-  .tag-cloud-item--small,
-  .tag-cloud-item--medium,
-  .tag-cloud-item--large,
-  .tag-cloud-item--xlarge {
-    min-width: auto; /* 移动端自适应宽度 */
+  .tag-cloud-item {
+    min-width: auto;
     height: auto;
-    padding: 0.75rem;
-    font-size: 0.9rem;
+    padding: 1.2rem 1rem;
+  }
+  .tag-cloud-item--xlarge {
+    border: none; /* 移动端隐藏边框，节省空间 */
+  }
+}
+
+/* 平板适配（769px-1024px） */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .tags-cloud {
+    gap: 1.1rem;
+    padding: 5rem 1.5rem 3rem;
   }
 }

